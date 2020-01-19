@@ -11,6 +11,11 @@
     <Company>Lost Tech LLC</Company>
     <Description>Cross-platform boilerplate for GUI apps</Description>
     <PackageTags>apps</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>© 2020 Lost Tech LLC</Copyright>
+    <PackageProjectUrl>https://github.com/losttech/App.Boilerplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/losttech/App.Boilerplate.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +23,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
