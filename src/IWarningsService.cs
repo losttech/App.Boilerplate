@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     public interface IWarningsService {
-        void Warn(string message, IReadOnlyDictionary<string, object?>? properties = null);
+        void Warn(Exception cause, string userFriendlyMessage, IReadOnlyDictionary<string, object?>? properties = null);
     }
 
     public static class WarningServiceExtensions {
@@ -14,7 +14,7 @@
             if (prefix == null) throw new ArgumentNullException(nameof(prefix));
 
             string message = prefix + exception.Message;
-            warningsService.Warn(message, properties: new SortedDictionary<string, object?> {
+            warningsService.Warn(exception, message, properties: new SortedDictionary<string, object?> {
                 [nameof(exception.StackTrace)] = exception.StackTrace,
                 [nameof(exception.Source)] = exception.Source,
                 [nameof(exception.HResult)] = exception.HResult,
