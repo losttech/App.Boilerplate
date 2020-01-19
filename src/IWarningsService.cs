@@ -1,10 +1,23 @@
 ﻿namespace LostTech.App {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     public interface IWarningsService {
         void Warn(Exception cause, string userFriendlyMessage, IReadOnlyDictionary<string, object?>? properties = null);
+    }
+
+    public static class WarningsService {
+        static IWarningsService? instance;
+        public static IWarningsService Default {
+            get => instance ?? throw new InvalidOperationException($"{nameof(WarningsService)} is not initialized");
+            set {
+                if (value is null) throw new ArgumentNullException(nameof(Default));
+                if (Interlocked.CompareExchange(ref instance, value, null) != null)
+                    throw new InvalidOperationException($"{nameof(WarningsService)} has already been initialized");
+            }
+        }
     }
 
     public static class WarningServiceExtensions {
