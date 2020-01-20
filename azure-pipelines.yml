@@ -1,0 +1,29 @@
+name: '$(Date:yyyy-MM-dd)$(Rev:--rrr)'
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core 3.1.x'
+  inputs:
+    packageType: sdk
+    version: 3.1.x
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'custom'
+    custom: 'pack'
+    arguments: '--configuration $(buildConfiguration) --version-suffix CI-$(Build.BuildNumber)'
+    packagesToPack: '**/*.csproj'
