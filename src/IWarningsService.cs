@@ -44,7 +44,7 @@
             potentiallyFailingTask.ContinueWith(t => {
                 if (t.IsFaulted)
                     warningsService.ReportAsWarning(t.Exception, prefix);
-                if (t.IsCompleted)
+                if (t.IsCompleted && t.Result is not null)
                     warningsService.ReportAsWarning(t.Result, prefix);
             }, TaskScheduler.Default);
         }
