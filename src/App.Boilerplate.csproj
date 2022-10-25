@@ -7,7 +7,7 @@
     <AssemblyName>LostTech.App.Boilerplate</AssemblyName>
     <RootNamespace>LostTech.App</RootNamespace>
 
-    <Version>0.2.3</Version>
+    <Version>0.2.4</Version>
     <Authors>Victor Nova</Authors>
     <Company>Lost Tech LLC</Company>
     <Description>Cross-platform boilerplate for GUI apps</Description>
